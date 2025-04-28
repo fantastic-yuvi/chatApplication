@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes bounce-dot1 {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bounce-dot2 {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bounce-dot3 {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+
+.animate-bounce-dot1 {
+  animation: bounce-dot1 1.2s infinite;
+}
+.animate-bounce-dot2 {
+  animation: bounce-dot2 1.2s infinite 0.2s;
+}
+.animate-bounce-dot3 {
+  animation: bounce-dot3 1.2s infinite 0.4s;
+}
