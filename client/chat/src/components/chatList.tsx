@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { User } from "../pages/chatPage";
 
 interface ChatListProps {
-  usersList: string[];
+  usersList: User[];
   typingUsers: string[];
 }
 

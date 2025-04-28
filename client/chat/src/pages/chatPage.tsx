@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { useNavigate } from "react-router-dom"; 
 
-
-interface User {
+export interface User {
   id: string;
   name: string;
 }
@@ -14,7 +13,7 @@ interface Message {
   timestamp: string;
 }
 
-const socket: Socket = io("http://localhost:5000");
+const socket: Socket = io("https://chatapplication-3-r83n.onrender.com");
 
 import ChatList from "../components/chatList";
 import Info from "../components/info";
@@ -25,9 +24,7 @@ const Chat: React.FC = () => {
   const [typingUsers, setTypingUsers] = useState<string[]>([]);
   const navigate = useNavigate();
 
-
   const username = localStorage.getItem("username");
-
 
   useEffect(() => {
     if (!username) {
@@ -41,7 +38,17 @@ const Chat: React.FC = () => {
     }
 
     socket.on("userListUpdated", (data: User[]) => {
-      setUsersList(data);
+      // Create a map to store unique users by ID
+      const updatedUsers = new Map();
+      
+      // Add the existing users to the map
+      usersList.forEach((user) => updatedUsers.set(user.id, user));
+      
+      // Add new users to the map, which will automatically handle duplicates
+      data.forEach((user) => updatedUsers.set(user.id, user));
+
+      // Convert the map back to an array and update the state
+      setUsersList(Array.from(updatedUsers.values()));
     });
 
     socket.on("userTyping", ({ name }: { name: string }) => {
@@ -57,7 +64,7 @@ const Chat: React.FC = () => {
       socket.off("userTyping");
       socket.off("userStopTyping");
     };
-  }, [username]);
+  }, [username, usersList]);
 
   return (
     <div className="flex w-full h-screen">
