@@ -7,11 +7,6 @@ export interface User {
   name: string;
 }
 
-interface Message {
-  user: string;
-  message: string;
-  timestamp: string;
-}
 
 const socket: Socket = io("https://chatapplication-3-r83n.onrender.com");
 
@@ -69,7 +64,7 @@ const Chat: React.FC = () => {
   return (
     <div className="flex w-full h-screen">
       <div className="w-1/4 p-4 border-2 shadow-lg rounded-lg">
-        <ChatList usersList={usersList} typingUsers={typingUsers} />
+        <ChatList usersList={usersList as unknown as string[]} typingUsers={typingUsers} />
       </div>
 
       <div className="flex-1 p-4">

@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { User } from "../pages/chatPage";
+
 
 interface ChatListProps {
-  usersList: User[];
+  usersList: string[];
   typingUsers: string[];
 }
 
@@ -15,18 +15,18 @@ const ChatList: React.FC<ChatListProps> = ({ usersList, typingUsers }) => {
 
       <div className="mt-4">
         <AnimatePresence>
-          {usersList.map((name) => (
+          {usersList.map((user) => (
             <motion.div
-              key={name}
+              key={user}
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 30 }}
               transition={{ duration: 0.3 }}
               className="mt-4 shadow-md rounded-xl h-[80px] flex flex-col justify-center pl-8 py-2 items-start text-xl capitalize text-[#615EF0] font-semibold relative bg-violet-100"
             >
-              <div>{name}</div>
+              <div>{user}</div>
 
-              {typingUsers.includes(name) && (
+              {typingUsers.includes(user) && (
                 <div className="flex space-x-1 mt-1">
                   <div className="text-gray-400 text-sm flex items-center">
                     typing

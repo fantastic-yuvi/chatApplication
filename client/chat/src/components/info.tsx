@@ -1,17 +1,8 @@
-import { useState, useEffect } from "react";
-
 interface InfoProps {
   username: string;
 }
 
 const Info: React.FC<InfoProps> = ({ username }) => {
-  const [image, setImage] = useState<string>("");
-
-  useEffect(() => {
-    const userImage = "path_to_your_image.jpg"; // Replace with your actual image path or URL
-    setImage(userImage);
-  }, []);
-
   return (
     <div className="bg-white shadow-md p-4 rounded-lg">
       <div className="flex items-center space-x-4">
