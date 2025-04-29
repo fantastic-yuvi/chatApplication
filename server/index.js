@@ -19,7 +19,7 @@ let users = {};
 let messages = [];
 
 const sendUserList = () => {
-  const userList = Object.entries(users).map(([id, name]) => ({ id, name }));
+  const userList = Object.values(users);
   io.emit('userListUpdated', userList);
 };
 
