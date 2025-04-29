@@ -19,7 +19,7 @@ let users = {};
 let messages = [];
 
 const sendUserList = () => {
-  const userList = Object.values(users);
+  const userList = Object.entries(users).map(([id, name]) => ({ id, name }));
   io.emit('userListUpdated', userList);
 };
 
@@ -60,7 +60,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('User disconnected:', socket.id);
     delete users[socket.id];
-    sendUserList();  // 👈 After disconnect, update user list again
+    sendUserList(); 
   });
 });
 

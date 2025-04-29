@@ -1,8 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-
 interface ChatListProps {
-  usersList: string[];
+  usersList: string[];  
   typingUsers: string[];
 }
 
@@ -13,11 +12,11 @@ const ChatList: React.FC<ChatListProps> = ({ usersList, typingUsers }) => {
         <h1>Messages</h1>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 max-h-[60vh] md:max-h-full overflow-auto">
         <AnimatePresence>
           {usersList.map((user) => (
             <motion.div
-              key={user}
+              key={user} 
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 30 }}
